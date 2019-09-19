@@ -4,8 +4,9 @@
 using namespace std;
 
 enum choices{ base = 1, boundedIn, boundedEx, lowerIn, lowerEx, upperIn, upperEx,
-two, baseString, boundedInString, boundedExString, lowerInString, lowerExString, 
-upperInString, upperExString, twoString, quit };
+two, arrayChoices, vectorChoices, baseString, boundedInString, boundedExString,
+lowerInString, lowerExString, upperInString, upperExString, twoString, 
+arrayChoicesString, vectorChoicesString, quit };
 
 int menu();
 void showResult(int res);
@@ -15,10 +16,13 @@ int main()
 {	
 	bool stopTesting = false;
 	int input = 0;
-	char yn = ' ';
+	char charInput = ' ';
 	string prompt = " ";
 	char nonDef[28] = "\nNon-default error message.";
 	string nonDefString = "\nNon-default error message.";
+	const int arraySize = 4;
+	char arrayOptions[arraySize] = { 'a', 'b', 'c', 'd' };
+	vector<char> vectorOptions = { 'a', 'b', 'c', 'd' };
 	
 	do
 	{
@@ -73,8 +77,22 @@ int main()
 			}
 			case two:
 			{
-				safeCinTwo<char>("\nChoose yes or no. (y/n): ", yn, 'y', 'n');
-				showResult(yn);
+				safeCinTwo<char>("\nChoose yes or no. (y/n): ", charInput, 'y', 'n');
+				showResult(charInput);
+				break;
+			}
+			case arrayChoices:
+			{
+				safeCinList<char>("\nEnter a, b, c, or d: ", charInput, 
+				arrayOptions, arraySize);
+				showResult(charInput);
+				break;
+			}
+			case vectorChoices:
+			{
+				safeCinList<char>("\nEnter a, b, c, or d: ", charInput, 
+				vectorOptions);
+				showResult(charInput);
 				break;
 			}
 			case baseString:
@@ -129,8 +147,22 @@ int main()
 			case twoString:
 			{
 				prompt = "\nPlease choose yes or no. (y/n): ";
-				safeCinTwo<char>(prompt, yn, 'y', 'n');
-				showResult(yn);
+				safeCinTwo<char>(prompt, charInput, 'y', 'n');
+				showResult(charInput);
+				break;
+			}
+			case arrayChoicesString:
+			{
+				prompt = "\nEnter a, b, c, or d: ";
+				safeCinList<char>(prompt, charInput, arrayOptions, arraySize);
+				showResult(charInput);
+				break;
+			}
+			case vectorChoicesString:
+			{
+				prompt = "\nEnter a, b, c, or d: ";
+				safeCinList<char>(prompt, charInput, vectorOptions);
+				showResult(charInput);
 				break;
 			}
 			case quit:
@@ -162,15 +194,19 @@ int menu()
 	cout << "\n6:  Upper bound, inclusive.";
 	cout << "\n7:  Upper bound, exclusive.";
 	cout << "\n8:  Two options.";
-	cout << "\n9:  Basic safeCin with std::string. (has non-default erroMessage)";
-	cout << "\n10: Bounded on two sides, inclusive with std::string.";
-	cout << "\n11: Bounded on two sides, exclusive with std::string.";
-	cout << "\n12: Lower bound, inclusive with std::string.";
-	cout << "\n13: Lower bound, exclusive with std::string.";
-	cout << "\n14: Upper bound, inclusive with std::string.";
-	cout << "\n15: Upper bound, exclusive with std::string.";
-	cout << "\n16: Two options, with std::string.";
-	cout << "\n17: Quit.";
+	cout << "\n9:  Array of options.";
+	cout << "\n10: Vector of options.";
+	cout << "\n11: Basic safeCin with std::string. (has non-default erroMessage)";
+	cout << "\n12: Bounded on two sides, inclusive with std::string.";
+	cout << "\n13: Bounded on two sides, exclusive with std::string.";
+	cout << "\n14: Lower bound, inclusive with std::string.";
+	cout << "\n15: Lower bound, exclusive with std::string.";
+	cout << "\n16: Upper bound, inclusive with std::string.";
+	cout << "\n17: Upper bound, exclusive with std::string.";
+	cout << "\n18: Two options, with std::string.";
+	cout << "\n19: Array of options with std::string.";
+	cout << "\n20: Vector of options with std::string.";
+	cout << "\n21: Quit.";
 
 	//get choice
 	safeCinBoundedIn<int>("\n\nWhich test would you like to do? ",choice, 

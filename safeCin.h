@@ -1,6 +1,7 @@
 #ifndef WIEWEL_SAFE_CIN_H
 #define WIEWEL_SAFE_CIN_H
 #include <string>
+#include <vector>
 #include <iostream>
 
 /*
@@ -19,6 +20,44 @@
 	variable of the desired type to pass into the function, the bounds are
 	passed by value and not by reference.
 */
+
+
+/*********************************************************************
+* 	THESE FUNCTION USED AS HELPER REGARDLESS OF STRING OR CONST CHAR[]	
+*********************************************************************/
+
+
+//helper function to check if an input is within the list of options provided
+template <typename DataT>
+bool isInOptionsList(const DataT& input, DataT optionsList[], int n)
+{	
+	//search for input in the options
+	for(int i = 0; i < n; i++)
+	{
+		//if we find input in the array, then it is in the list and we ret true
+		if(optionsList[i] == input)
+			return true;
+	}
+	
+	//we went through the array and didn't find in put, so we return false
+	return false;
+}
+//helper function to do the same as the function above, but with vectors
+template <typename DataT>
+bool isInOptionsList(const DataT& input, const std::vector<DataT>& optionsList)
+{
+	int length = optionsList.size(); //get length of vector
+	
+	//search the vector
+	for(int i = 0; i < length; i++)
+	{
+		if(optionsList[i] == input)
+			return true;
+	}
+	
+	//didn't find input in the vector, return false
+	return false;
+}
 
 /*********************************************
 *	THIS SECTION USES CONST CHAR[] FOR PROMPTS
@@ -40,6 +79,7 @@ inline bool wasGood(const bool cinFail, const char errorMessage[])
 	//return the opposite of cinFail to tell if the input was good
 	return !cinFail;
 }
+//helper function 
 //standard safeCin function for one parameter, no bounds
 template <typename DataT>
 void safeCin(const char prompt[], DataT& input, 
@@ -171,6 +211,42 @@ const DataT& option2, const char errorMessage[] = "\nBad input. Try again.")
 		std::cin >> input;
 		//tests if cin failed or if the input is equal to neither option
 		good = wasGood(std::cin.fail() || (input != option1 && input != option2), 
+		errorMessage);
+	}while(!good);
+}
+//will check that the input falls into the range of options provided
+//n is size of array
+template <typename DataT>
+void safeCinList(const char prompt[], DataT& input, DataT optionsList[], int n,
+const char errorMessage[] = "\nBad input. Try again.")
+{
+	bool good = false;
+	
+	do
+	{
+		std::cout << prompt;
+		std::cin >> input;
+		
+		//checks cin.fail() and whether input is in the array provided
+		good = wasGood(std::cin.fail() || !isInOptionsList(input, optionsList, n),
+		errorMessage);
+	}while(!good);
+}
+//will check input is withing vector of options given
+template <typename DataT>
+void safeCinList(const char prompt[], DataT& input, 
+const std::vector<DataT>& optionsList,
+const char errorMessage[] = "\nBad input. Try again.")
+{
+	bool good = false;
+	
+	do
+	{
+		std::cout << prompt;
+		std::cin >> input;
+		
+		//check for cin.fail() and that input is in list of options
+		good = wasGood(std::cin.fail() || !isInOptionsList(input, optionsList),
 		errorMessage);
 	}while(!good);
 }
@@ -326,6 +402,42 @@ const DataT& option2, const std::string& errorMessage = "\nBad input. Try again.
 		std::cin >> input;
 		//tests if cin failed or if the input is equal to neither option
 		good = wasGood(std::cin.fail() || (input != option1 && input != option2), 
+		errorMessage);
+	}while(!good);
+}
+//will check that the input falls into the range of options provided
+//n is size of array
+template <typename DataT>
+void safeCinList(const std::string& prompt, DataT& input, DataT optionsList[], int n,
+const std::string& errorMessage = "\nBad input. Try again.")
+{
+	bool good = false;
+	
+	do
+	{
+		std::cout << prompt;
+		std::cin >> input;
+		
+		//checks cin.fail() and whether input is in the array provided
+		good = wasGood(std::cin.fail() || !isInOptionsList(input, optionsList, n),
+		errorMessage);
+	}while(!good);
+}
+//will check input is withing vector of options given
+template <typename DataT>
+void safeCinList(const std::string& prompt, DataT& input, 
+const std::vector<DataT>& optionsList,
+const std::string& errorMessage = "\nBad input. Try again.")
+{
+	bool good = false;
+	
+	do
+	{
+		std::cout << prompt;
+		std::cin >> input;
+		
+		//check for cin.fail() and that input is in list of options
+		good = wasGood(std::cin.fail() || !isInOptionsList(input, optionsList),
 		errorMessage);
 	}while(!good);
 }
