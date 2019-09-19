@@ -50,11 +50,19 @@ It was written with "Do you want to do X? (y/n): " type prompts in mind.
 For the following functions, please refer to the above function with the same name to know the functionality.
 
 inline bool wasGood(const bool, const std:string&)
+
 void safeCin(const std::string& prompt, DataT& input, const std::string& errorMessage)
+
 void safeCinBoundedIn(const std::string& prompt, DataT& input, const DataT& lowerBound, const DataT& upperBound, const std::string& errorMessage)
+
 void safeCinBoundedEx(const std::string& prompt, DataT& input, const DataT& lowerBound, const DataT& upperBound, const std::string& errorMessage)
+
 void safeCinLowerIn(const std::string& prompt, DataT& input, const DataT& lowerBound, const std:string& errorMessage)
+
 void safeCinLowerEx(const std::string& prompt, DataT& input, const DataT& lowerBound, const std:string& errorMessage)
+
 void safeCinUpperIn(const std::string& prompt, DataT& input, const DataT& upperBound, const std::string& errorMessage)
+
 void safeCinUpperEx(const std::string& prompt, DataT& input, const DataT& upperBound, const std::string& errorMessage)
+
 void safeCinTwo(const std::string& prompt, DataT& input, const DataT& option1, const DataT& option2, const std::string& errorMessage)
