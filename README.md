@@ -34,6 +34,11 @@ This is a helper function used throughout the safeCin functions that take const 
 It clears the input, ignores until the newline, and will print the error message.
 
 
+
+
+
+
+
 void safeCin(const char prompt[], DataT& input, const char[] errorMessage[])
 
 This function is the basic safeCin. It will print the prompt for the user and ask for input. 
