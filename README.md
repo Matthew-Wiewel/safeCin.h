@@ -16,8 +16,7 @@ with a value of "".
 # helper functions used by both the const char[] and std::string functions
 
 bool isInOptionsList(const DataT& input, DataT optionsList[], int n)
-
-  Given an array with valid selections and length n, it checks if the input is one of those options.
+  - Given an array with valid selections and length n, it checks if the input is one of those options.
   
   
 
