@@ -17,78 +17,49 @@ with a value of "".
 
 bool isInOptionsList(const DataT& input, DataT optionsList[], int n)
   - Given an array with valid selections and length n, it checks if the input is one of those options.
-  
-  
 
 bool isInOptionsList(const DataT& input, std::vector<DataT>& optionsList)
-  
-  Given a vector of valid selections, it checks if the input is one of those options.
+  - Given a vector of valid selections, it checks if the input is one of those options.
 
 
 # functions taking const char[] prompts and error messages
 
 inline bool wasGood(const bool, const char[])
-
-This is a helper function used throughout the safeCin functions that take const char[] prompts and error messages.
+  - This is a helper function used throughout the safeCin functions that take const char[] prompts and error messages.
 It clears the input, ignores until the newline, and will print the error message.
 
-
-
-
-
-
-
 void safeCin(const char prompt[], DataT& input, const char[] errorMessage[])
-
-This function is the basic safeCin. It will print the prompt for the user and ask for input. 
+  - This function is the basic safeCin. It will print the prompt for the user and ask for input. 
 If the entered data caused a cin.fail(), it will call wasGood and prompt the user to retry the input.
 
 
 void safeCinBoundedIn(const char prompt[], DataT& input, const DataT& lowerBound, const DataT& upperBound, const char errorMessage[])
-
-This function adds in boundaries for the input. These boundaries are inclusive of the bounds.
-
+  - This function adds in boundaries for the input. These boundaries are inclusive of the bounds.
 
 void safeCinBoundedEx(const char prompt[], DataT& input, const DataT& lowerBound, const DataT& upperBound, const char errorMessage[])
-
-The boundaries of this function are exclusie.
-
+  - The boundaries of this function are exclusie.
 
 void safeCinLowerIn(const char prompt[], DataT& input, cosnt DataT& lowerBound, const char errorMessage[])
-
-This function has an inclusive lower bound.
-
+  - This function has an inclusive lower bound.
 
 void safeCinLowerEx(const char prompt[], DataT& input, const DataT& lowerBound, const char errorMessage[])
-
-This function has an exclusive lower bound.
-
+  - This function has an exclusive lower bound.
 
 void safeCinUpperIn(const char prompt[], DataT& input, const DataT& upperBound, const char errorMessage[])
-
-This function has an inclusive upper bound.
-
+  - This function has an inclusive upper bound.
 
 void safeCinUpperEx(const char prompt[], DataT& input, const DataT& upperBound, const char errorMessage[])
-
-T his function has an exclusive upper bound.
-
+  - T his function has an exclusive upper bound.
 
 void safeCinTwo(const char prompt[], DataT& input, const DataT& option1, const DataT& option2, const char errorMessage[])
-
-This function will check that the input value is both valid and equivalent to one of the passed options.
+  - This function will check that the input value is both valid and equivalent to one of the passed options.
 It was written with "Do you want to do X? (y/n): " type prompts in mind.
 
-
 void safeCinList(const char prompt[], DataT& input, DataT optionsList[], int n, const char errorMessage[])
-
-This function will check that the input is both valid and within the options that are valid, ie contained in the array given. n refers to the size of the array. This function, like the one below, were written with menu selections that may not be numerically or ASCII sequential. 
- 
+  - This function will check that the input is both valid and within the options that are valid, ie contained in the array given. n refers to the size of the array. This function, like the one below, were written with menu selections that may not be numerically or ASCII sequential. 
  
 void safeCinList(const char prompt[], DataT& input, std::vector<DataT>& optionsList, const char errorMessage[])
- 
- Like the one above, it checks to make sure the input is both valid and contained in the vector given for valid inputs.
-
+ - Like the one above, it checks to make sure the input is both valid and contained in the vector given for valid inputs.
 
 # functions taking std::string prompts and error messages
 
